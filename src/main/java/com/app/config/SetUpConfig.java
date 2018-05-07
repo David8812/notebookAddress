@@ -27,10 +27,10 @@ public class SetUpConfig {
 	DataSource dataSource(Environment env) {
 		HikariConfig dataSourceConfig = new HikariConfig();
 		dataSourceConfig.setDriverClassName("org.postgresql.Driver");
-		//para aws elasticbeanstalk
-		//System.setProperty("SP_DATASOURCE_URL", "jdbc:postgresql://localhost:5432/notebook_address");
-		//System.setProperty("SP_DATASOURCE_USERNAME", "postgres");
-		//System.setProperty("SP_DATASOURCE_PASSWORD", "postgres");
+		//para aws elasticbeanstalk vamos a ver si veo esto
+		System.setProperty("SP_DATASOURCE_URL", "jdbc:postgresql://localhost:5432/notebook_address");
+		System.setProperty("SP_DATASOURCE_USERNAME", "postgres");
+		System.setProperty("SP_DATASOURCE_PASSWORD", "postgres");
 		
 		//dataSourceConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/notebook_address");
 		dataSourceConfig.setJdbcUrl(System.getProperty("SP_DATASOURCE_URL"));
