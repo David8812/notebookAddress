@@ -32,9 +32,10 @@ public class WebSecurityConfig extends AbstractSecurityWebApplicationInitializer
 		protected void configure(HttpSecurity http) throws Exception {
 			http.authorizeRequests()
 			.antMatchers("/validateLoggin", "/logout", "/registerNewUser", "/saveNewUser").permitAll()
-			.regexMatchers(".*language.*").permitAll()
+			.regexMatchers(".*/\\?language=.*").permitAll()
 			.regexMatchers("/callFromSearch\\?search=\\&agregarNuevo/?.*", "/callFromSearchPart\\?search=\\&agregarNuevo/?.*", "/editPartner?.*", "/editFam?.*").hasRole("ADMIN")
-			.anyRequest().authenticated().and().formLogin().loginPage("/").permitAll()
+			.anyRequest().authenticated()
+			.and().formLogin().loginPage("/").permitAll()
 			.and().logout().permitAll().and().exceptionHandling().accessDeniedPage("/forbidden.jsp");
 		}
 

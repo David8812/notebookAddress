@@ -41,7 +41,7 @@
 				{
 				%>	
 					<a>|</a>
-					<a href="?language=es_US">English</a>
+					<a href="?language=en_US">English</a>
 					<a>|</a> 
 					<a href="?language=es_MX">Español</a></td>
 				<%
