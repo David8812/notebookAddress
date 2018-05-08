@@ -2,8 +2,10 @@ package com.app.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
 import com.app.model.Family;
 import com.app.model.Partner;
@@ -46,8 +49,48 @@ public class WebController {
 	@Autowired
 	AuthenticationManager authenticationManager;
 
+	@Autowired
+	LocaleResolver resolver;
+
+	private void setLanguageByLocal(HttpServletResponse response) {
+		Locale l = Locale.getDefault();
+		String language = l.getLanguage();
+		String country = l.getCountry();
+		System.out.println("No existe cookie para lenguaje, resolviendo por config local");
+		System.out.println("La configuracion detectada es: " + language + "_" + country);
+		if (language.equals("es"))
+			response.setHeader("language", "es_mx");
+		else
+			response.setHeader("language", "en_us");
+	}
+
+	private void changeLanguage(String lang, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Existe cookie para lenguaje, cambiando a: " + lang);
+		if (lang.startsWith("en")) {
+			resolver.setLocale(request, response, new Locale("en_US"));
+			response.setHeader("language", "en_US");
+		} else {
+			resolver.setLocale(request, response, new Locale("es_MX"));
+			response.setHeader("language", "es_MX");
+		}
+	}
+
 	@GetMapping("/")
-	public String home() {
+	public String home(HttpServletRequest request, HttpServletResponse response) {
+		String lang = request.getQueryString();
+		if (lang == null) {
+			Cookie c[] = request.getCookies();
+			for (Cookie cookie : c)
+				if (cookie.getName().equals("language")) {
+					lang = cookie.getValue();
+					break;
+				}
+		} else
+			lang = lang.substring(lang.indexOf("=") + 1);
+		if (lang == null)
+			setLanguageByLocal(response);
+		else
+			changeLanguage(lang, request, response);
 		return "index";
 	}
 

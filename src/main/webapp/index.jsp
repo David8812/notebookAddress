@@ -27,7 +27,7 @@
 			<%
 				User user = new User();
 				request.setAttribute("User", user);
-				String s = (String) request.getSession().getAttribute("usuario");			
+				String s = (String) request.getSession().getAttribute("usuario");
 				if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
 			%>
 			<table border="0">

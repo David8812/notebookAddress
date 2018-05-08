@@ -37,13 +37,16 @@
 				//out.println("URL: " + request.getRequestURL().toString());
 				//out.println(" URI: " + request.getRequestURI());
 				//out.println(" Ctx Path: " + request.getContextPath());
-				//if(request.getRequestURL().toString().endsWith("index.jsp"))// && prefix == null) 
+				//out.println(" Servlet Path: " + request.getServletPath());
+				if(
+						//auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken) && 
+						request.getServletPath().endsWith("index.jsp"))
 				{
-				%>	
+				%>
 					<a>|</a>
-					<a href="?language=en_US">English</a>
+					<a href="<%=request.getContextPath() %>?language=en_US">English</a>
 					<a>|</a> 
-					<a href="?language=es_MX">Español</a></td>
+					<a href="<%=request.getContextPath() %>?language=es_MX">Español</a></td>
 				<%
 					}
 				%>

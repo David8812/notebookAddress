@@ -4,6 +4,7 @@
 <style>
 <%@ include file="/WEB-INF/css/general_style.css"%>
 </style>
+<%@ include file="barner.jsp" %>
 <div>
 	<%
 		User user = new User();

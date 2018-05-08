@@ -10,10 +10,8 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -51,19 +49,19 @@ public class WebConfig implements WebMvcConfigurer {
 		//resolver.setDefaultLocale(new Locale("es_US"));
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
 		cookieLocaleResolver.setCookieName("language");
-		Locale l = Locale.getDefault();
+		/*Locale l = Locale.getDefault();
 		String lang = l.getLanguage();
 		String country = l.getCountry();
-		System.out.println(lang);
-		System.out.println(country);
+		System.out.println("resolviendo idioma por config local a: " + lang + "_" + country);
 		if(lang.equals("es"))
 			cookieLocaleResolver.setDefaultLocale(new Locale("es_MX"));
 		else
-			cookieLocaleResolver.setDefaultLocale(new Locale("en_US"));
+			cookieLocaleResolver.setDefaultLocale(new Locale("en_US"));*/
 		return cookieLocaleResolver;
 	}
 
-	@Bean
+	/*@Bean
+	uncomment this lines to being able to change language from any page
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("language");
@@ -73,5 +71,5 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
-	}
+	}*/
 }
