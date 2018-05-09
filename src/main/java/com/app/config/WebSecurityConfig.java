@@ -57,7 +57,7 @@ public class WebSecurityConfig extends AbstractSecurityWebApplicationInitializer
 			http.authorizeRequests()
 			.antMatchers("/validateLoggin", "/logout", "/registerNewUser", "/saveNewUser").permitAll()
 			//.regexMatchers(".*/\\?language=.+").permitAll()
-			.regexMatchers("/callFromSearch\\?search=\\&agregarNuevo/?.*", "/callFromSearchPart\\?search=\\&agregarNuevo/?.*", "/editPartner?.*", "/editFam?.*").hasRole("ADMIN")
+			.regexMatchers(".*/callFromSearch\\?search=\\&agregarNuevo/?.*", "/callFromSearchPart\\?search=\\&agregarNuevo/?.*", "/editPartner?.*", ".*/editFam?.*").hasRole("ADMIN")
 			.anyRequest().authenticated().and().formLogin().loginPage("/").permitAll().and()
 			.logout().permitAll().and().exceptionHandling().accessDeniedPage("/forbidden.jsp");
 		}

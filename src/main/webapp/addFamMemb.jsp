@@ -7,6 +7,7 @@
 <style>
 <%@ include file="/WEB-INF/css/table_style.css"%>
 <%@ include file="/WEB-INF/css/general_style.css"%>
+<%@ include file="/WEB-INF/css/main-page-style.css"%>
 </style>
 <html lang="en">
 <body>
@@ -23,11 +24,11 @@
 				String s = (String) request.getAttribute("mensaje");
 				if(s != null && s.contains("success")) {
 			%>
-				<div style="background-color:green; text-align: center; height: 20px; color: white; text-shadow: 1px 1px 2px #000;"><spring:message code="<%=s %>" /></div>
+				<div class="success-div"><spring:message code="<%=s %>" /></div>
 			<%
 				} else if(s != null) {
 			%>
-				<div style="background-color:red; text-align: center; height: 20px; color: white; text-shadow: 1px 1px 2px #000;"><spring:message code="<%=s %>" /></div>
+				<div class="error-div"><spring:message code="<%=s %>" /></div>
 			<%
 				}
 			%>

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="org.springframework.security.core.authority.SimpleGrantedAuthority"%>
+<%@page import="java.util.Collection"%>
 <%@page import="java.util.List"%>
 <%@page import="com.app.model.Family"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -17,6 +19,15 @@
 				<table border="0" style="width: 100%">
 					<tr>
 						<td style="width: 18.5%; text-align: left;"><input name="search" type="text" /> <input type="submit" name="buscar" value='<spring:message code="search" />' /></td>
+						<%
+						Collection c = auth.getAuthorities();
+						for(Object o : c) {
+							SimpleGrantedAuthority s = (SimpleGrantedAuthority) o;
+							if(s.getAuthority().equals("ROLE_ADMIN")) {
+								
+							}
+						}
+						%>
 						<td style="width: 20%"><input type="submit" name="agregarNuevo" value='<spring:message code="addNew" />' /></td>
 						<td style="text-align: right;"><a href="<%=request.getContextPath().equals("") ? "/" : request.getContextPath() %>"><spring:message code="mainPage" /></a></td>
 					</tr>

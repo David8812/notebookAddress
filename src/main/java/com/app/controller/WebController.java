@@ -113,6 +113,7 @@ public class WebController {
 				request.getSession().setAttribute("auth", auth);
 			}
 		} catch (BadCredentialsException e) {
+			request.getSession().setAttribute("bad-credential", "");
 			System.out.println("Credenciales incorrectas");
 		}
 		return "redirect:/";
