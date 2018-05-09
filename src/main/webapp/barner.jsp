@@ -44,9 +44,9 @@
 				{
 				%>
 					<a>|</a>
-					<a href="<%=request.getContextPath() %>?language=en_US">English</a>
+					<a href="<%=request.getContextPath() %>/lang/?language=en_US">English</a>
 					<a>|</a> 
-					<a href="<%=request.getContextPath() %>?language=es_MX">Español</a></td>
+					<a href="<%=request.getContextPath() %>/lang/?language=es_MX">Español</a></td>
 				<%
 					}
 				%>

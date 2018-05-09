@@ -76,7 +76,12 @@ public class WebController {
 	}
 
 	@GetMapping("/")
-	public String home(HttpServletRequest request, HttpServletResponse response) {
+	public String home() {
+		return "index";
+	}
+	
+	@GetMapping("/lang")
+	public String homeLang(HttpServletRequest request, HttpServletResponse response) {
 		String lang = request.getQueryString();
 		if (lang == null) {
 			Cookie c[] = request.getCookies();
@@ -91,7 +96,7 @@ public class WebController {
 			setLanguageByLocal(response);
 		else
 			changeLanguage(lang, request, response);
-		return "index";
+		return "redirect:/";
 	}
 
 	@PostMapping("/validateLoggin")

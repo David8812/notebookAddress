@@ -16,9 +16,33 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 
 @EnableWebSecurity
 public class WebSecurityConfig extends AbstractSecurityWebApplicationInitializer {
-
+	
 	@Configuration
 	@Order(2)
+	public class WebSecurityConfigurationWithoutLogin extends WebSecurityConfigurerAdapter {
+		
+		@Autowired
+		private CustomAutenticationProvider customAutenticationProvider;
+
+		@Override
+		public void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.authenticationProvider(customAutenticationProvider);
+		}
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.antMatcher("/lang/**").authorizeRequests().anyRequest().permitAll();
+		}
+
+		@Bean
+		@Override
+		public AuthenticationManager authenticationManagerBean() throws Exception {
+			return super.authenticationManagerBean();
+		}
+	}
+
+	@Configuration
+	@Order(3)
 	public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Autowired
 		private CustomAutenticationProvider customAutenticationProvider;
