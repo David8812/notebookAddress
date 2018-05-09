@@ -13,7 +13,7 @@
 	<%@ include file="barner.jsp" %>
 	<div>
 		<div>
-			<form action="<%=request.getContextPath() %>/callFromSearch" method="get">
+			<form action="<%=request.getContextPath() %>/findAllFamily/callFromSearch" method="get">
 				<table border="0" style="width: 100%">
 					<tr>
 						<td style="width: 18.5%; text-align: left;"><input name="search" type="text" /> <input type="submit" name="buscar" value='<spring:message code="search" />' /></td>
@@ -48,7 +48,7 @@
 								String domicilio = family.getDomicilio();
 					%>
 					<tr>
-						<td><a href="<%=request.getContextPath() %>/editFam?idFam=<%=family.getId()%>"> <%=family.getId()%>
+						<td><a href="<%=request.getContextPath() %>/findAllFamily/editFam?idFam=<%=family.getId()%>"> <%=family.getId()%>
 						</a></td>
 						<td><%=nombre%></td>
 						<td><%=appPat%></td>

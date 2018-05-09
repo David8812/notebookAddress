@@ -106,6 +106,7 @@ public class WebController {
 			UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
 					user.getUserName(), user.getPassword());
 			final Authentication auth = authenticationManager.authenticate(authRequest);
+			request.getSession().setMaxInactiveInterval(10 * 60);//expire session after 10 minutes with no requests from client
 			if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
 				SecurityContextHolder.getContext().setAuthentication(auth);
 				request.getSession().setAttribute("usuario", user.getUserName());
@@ -155,7 +156,7 @@ public class WebController {
 		return "createUser";
 	}
 
-	@GetMapping("/callFromSearch")
+	@GetMapping("/findAllFamily/callFromSearch")
 	public String interceptCallFromList(@RequestParam(name = "search") String name, Model model,
 			HttpServletRequest request) {
 		if (request.getParameter("buscar") != null) {
@@ -202,7 +203,7 @@ public class WebController {
 		return "partList";
 	}
 
-	@PostMapping("/saveFamMemb")
+	@PostMapping("/findAllFamily/saveFamMemb")
 	public String saveFamMemb(@ModelAttribute Family family, Model model, HttpServletRequest request) {
 		if (request.getParameter("Guardar") != null) {
 			try {
@@ -258,7 +259,7 @@ public class WebController {
 		return "/addPartner";
 	}
 
-	@GetMapping("/editFam")
+	@GetMapping("/findAllFamily/editFam")
 	public String editFam(@RequestParam(name = "idFam") Long idFam, Model model) {
 		Family fam = null;
 		try {
