@@ -19,7 +19,6 @@
 <style>
 <%@ include file="/WEB-INF/css/table_style.css"%>
 <%@ include file="/WEB-INF/css/general_style.css"%>
-<%@ include file="/WEB-INF/css/main-page-style.css"%>
 </style>
 <html lang="en">
 <body>

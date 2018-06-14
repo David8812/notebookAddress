@@ -17,4 +17,5 @@ public class NotebookAddressApplication extends SpringBootServletInitializer {
 		SpringApplication.run(NotebookAddressApplication.class, args);
 	}
 
+	private static Class<NotebookAddressApplication> applicationClass = NotebookAddressApplication.class;
 }

@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
+@Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends AbstractSecurityWebApplicationInitializer {
 	

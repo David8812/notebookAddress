@@ -10,12 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "family")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Family implements Serializable {
 
 	private static final long serialVersionUID = -3009157732242241606L;
@@ -24,29 +23,25 @@ public class Family implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "name", length=45)
-	@NotNull
-	@NotBlank
+	@Column(name = "name", length = 45)
+	@NotEmpty
 	private String nombre;
 
-	@Column(name = "father_lastName", length=45)
-	@NotNull
-	@NotBlank
+	@Column(name = "father_lastName", length = 45)
+	@NotEmpty
 	private String apellidoPaterno;
 
-	@Column(name = "mother_lastname", length=45)
-	@NotNull
-	@NotBlank
+	@Column(name = "mother_lastname", length = 45)
+	@NotEmpty
 	private String apellidoMaterno;
 
-	@Column(name = "phone", length=45)
-	@NotNull
-	@NotBlank
+	@Column(name = "phone", length = 45)
+	@NotEmpty
 	private String telefono;
 
-	@Column(name = "address", length=45)
+	@Column(name = "address", length = 45)
 	private String domicilio;
-	
+
 	public Family() {
 	}
 

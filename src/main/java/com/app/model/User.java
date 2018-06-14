@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "usuario")
@@ -20,17 +21,17 @@ public class User implements Serializable {
 	private Long id;
 
 	@Column(name = "username", length = 45, unique = true)
-	@NotBlank
+	@NotEmpty
 	private String userName;
 
 	@Column(name = "password", length = 45)
-	@NotBlank
+	@NotEmpty
 	private String password;
 
 	private String confirmPassword;
 
 	@Column(name = "roll", length = 45)
-	@NotBlank
+	@NotEmpty
 	private String roll;
 
 	public User() {

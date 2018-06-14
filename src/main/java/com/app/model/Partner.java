@@ -8,8 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "partner")
@@ -27,8 +26,7 @@ public class Partner extends Family implements Serializable {
 	private String area;
 
 	@Column(name = "business_sector", length = 45)
-	@NotNull
-	@NotBlank
+	@NotEmpty
 	private String rubro;
 
 	public Partner() {
